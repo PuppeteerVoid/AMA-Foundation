@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552893853520",
+    "project_id": "ama-foundation-9c810",
+    "storage_bucket": "ama-foundation-9c810.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552893853520:android:9d9defb4de39e1b9e10655",
+        "android_client_info": {
+          "package_name": "com.skafold.amaeyeclinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552893853520-scvfv812uqqbs26dp6sbgin2u9dhnehc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_0c7rd3k9B6kcWWbDFpXazLQAKWHFB3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552893853520-scvfv812uqqbs26dp6sbgin2u9dhnehc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

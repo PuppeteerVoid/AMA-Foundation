@@ -1,0 +1,821 @@
+import './formsDate.dart';
+import './home.dart';
+import './login.dart';
+import 'package:flutter/material.dart';
+import 'patientprofile.dart';
+import './main.dart';
+import './user.dart';
+import './formsAtoZ.dart';
+// void main() {
+//   runApp(
+//      clinic2()
+//   );
+// }
+class formVandUV extends StatefulWidget {
+  const formVandUV({super.key});
+  @override
+  State<formVandUV> createState() => _formVandUVState();
+}
+class _formVandUVState extends State<formVandUV> {
+
+  String formVariant = "Viewed and Unviewed";
+  final _formVariation = [
+    "Viewed and Unviewed","AtoZ", "Date Created"
+  ];
+  var searchUser ;
+  final _searchusercontroller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _searchusercontroller.addListener(updateSearch);
+  }
+  void updateSearch(){
+    setState((){
+        searchUser = _searchusercontroller.text;
+    });
+  }
+  Widget build(BuildContext ctxt) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Color.fromRGBO(238, 255, 241, 1),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text("AMA Foundation",style: TextStyle(color: Colors.black),),
+        ),
+        body: SafeArea(
+            child: Row(
+              children: [
+                Container(
+                  width: 270,
+                  height: double.infinity,
+                  padding: EdgeInsets.zero,
+                  child: NavigationDrawer(
+                    backgroundColor: Color.fromRGBO(99, 161, 112, 1),
+                    children: [
+                      TextButton(
+                        onPressed: ()=>{
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => new login())
+                        )
+                      },
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
+                              child: Image(
+                                image: AssetImage("images/arjun.png"),
+                                height: 60,
+                                width: 60,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 20, top: 27),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Ibrahim Yakubu",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Inter",
+                                    ),
+                                  ),
+                                  Text(
+                                    "Admin",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Inter",
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextButton(
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            new MaterialPageRoute(builder: (ctxt) => new home()),
+                          );
+                        },
+                        child: Container(
+                          color: Color.fromRGBO(99,161,112,1),
+                          height: 70,
+                          width: 300,
+                          padding: EdgeInsets.only(left: 20),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "images/home.png",
+                                width: 35,
+                                height: 35,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 30),
+                                child: Text(
+                                  'Home',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (uSer) => new user()),
+                          );
+                        },
+                        child: Container(
+                          color: Color.fromRGBO(99, 161, 112, 1),
+                          height: 70,
+                          width: 300,
+                          padding: EdgeInsets.only(left: 20),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "images/user.png",
+                                width: 35,
+                                height: 35,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Users',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new formVandUV())
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Color.fromRGBO(255, 255, 255, 0.3),
+                          ),
+                          height: 70,
+                          width: 300,
+                          padding: EdgeInsets.only(left: 20),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "images/forms.png",
+                                width: 35,
+                                height: 35,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Forms',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(55,0,40,0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 1000,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top:50),
+                                child: Text(
+                                  "Dashboard / Forms",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromRGBO(150,150,150,1)
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 50),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                        width: 220,
+                                        height: 53,
+                                        color: Colors.white,
+                                        child: ListView(
+                                          children: [
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                prefixIcon: Icon(Icons.search),
+                                                hintText: "Search",
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                    ),
+                                    SizedBox(width: 20,),
+                                    Container(
+                                      width: 110,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(99, 161, 112, 1),
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                      child: TextButton(
+                                          onPressed: ()=>{
+
+                                          },
+                                          child: Text(
+                                            "Search",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 15,
+                                            ),
+                                          )
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height:60),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 720,
+                              padding: EdgeInsets.fromLTRB(10,13,10,13),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => new formVandUV())
+                                      );
+                                    },
+                                    child: Text(
+                                      "Unviewed and Viewed",
+                                      style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color.fromRGBO(86, 109, 136, 1),
+                                        decoration: TextDecoration.underline
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => new formsAtoZ())
+                                      );
+                                    },
+                                    child: Text(
+                                      "A - Z",
+                                      style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromRGBO(86, 109, 136, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => new formsDate())
+                                      );
+                                    },
+                                    child: Text(
+                                      "Date Created",
+                                      style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromRGBO(86, 109, 136, 1)
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 50,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                            "Submitted Forms",
+                            style: TextStyle(
+                              fontFamily: "Inter",
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                          ]
+                        ),
+                        SizedBox(height: 15),
+                        Row(
+                          children: [
+                            SizedBox(height: 20),
+                            Text(
+                              "Unviewed",
+                              style: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 35,),
+                        Container(
+                          width: 973,
+                          height: 1,
+                          color: Colors.black,
+                        ),
+                        SizedBox(height: 35,),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Jeniffer Kate",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:25),
+                              Text(
+                                "Age: 25",
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:17),
+                              Text(
+                                "Sex: Female",
+                                style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(86, 109, 136, 1)
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Submitted On: 01/03/23",
+                                    style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(86, 109, 136, 1)
+                                    ),
+                                  ),
+                                  SizedBox(width: 530,),
+                                  Container(
+                                    width: 105,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(width: 20,),
+                                  Container(
+                                    width: 95,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "View",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 35,),
+                        Row(
+                          children: [
+                            SizedBox(height: 20,),
+                            Text(
+                              "Viewed",
+                              style: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 35,),
+                        Container(
+                          width: 973,
+                          height: 1,
+                          color: Colors.black,
+                        ),
+                        SizedBox(height: 35,),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Sam Peters",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:25),
+                              Text(
+                                "Age: 31",
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:17),
+                              Text(
+                                "Sex: Male",
+                                style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(86, 109, 136, 1)
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Submitted On: 28/04/23",
+                                    style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(86, 109, 136, 1)
+                                    ),
+                                  ),
+                                  SizedBox(width: 530,),
+                                  Container(
+                                    width: 105,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(width: 20,),
+                                  Container(
+                                    width: 95,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "View",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 35,),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Lorelai Murray",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:25),
+                              Text(
+                                "Age: 19",
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:17),
+                              Text(
+                                "Sex: Female",
+                                style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(86, 109, 136, 1)
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Submitted On: 08/06/23",
+                                    style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(86, 109, 136, 1)
+                                    ),
+                                  ),
+                                  SizedBox(width: 530,),
+                                  Container(
+                                    width: 105,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(width: 20,),
+                                  Container(
+                                    width: 95,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => new patient())
+                                          )
+                                        },
+                                        child: Text(
+                                          "View",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 35,),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Dalton Devito",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:25),
+                              Text(
+                                "Age: 21",
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(86, 109, 136, 1),
+                                ),
+                              ),
+                              SizedBox(height:17),
+                              Text(
+                                "Sex: Male",
+                                style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(86, 109, 136, 1)
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Submitted On: 14/12/22",
+                                    style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(86, 109, 136, 1)
+                                    ),
+                                  ),
+                                  SizedBox(width: 530,),
+                                  Container(
+                                    width: 105,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(width: 20,),
+                                  Container(
+                                    width: 95,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(99, 161, 112, 1),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: ()=>{
+                                        },
+                                        child: Text(
+                                          "View",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text("Searching for the user ${_searchusercontroller.text}")
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+        ),
+      ),
+    );
+  }
+}
+
