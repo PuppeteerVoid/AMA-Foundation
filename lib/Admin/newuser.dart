@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'user.dart';
-import 'team.dart';
+import './main.dart';
+import './home.dart';
+import './user.dart';
+import './team.dart';
+import './formsvnuv.dart';
+import "package:amaeyeclinic/login.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 // void main() {
 //   runApp(
 //      clinic2()
@@ -13,9 +19,135 @@ class newUser extends StatefulWidget {
   State<newUser> createState() => _newUserState();
 }
 class _newUserState extends State<newUser> {
-  var roleStart = "Intern";
-  var role = ["Intern", "HealthWorker", "Nurse", "Doctor", "Pharmacist", "Admin"];
+  _newUserState() {
+    _selectedRoleVal = _roleList[0];
+  }
+  //authenticating the user
+  final _roleList = [
+    "Intern",
+    "Common Health Worker",
+    "Nurse",
+    "Doctor",
+  ];
+
+  String? _selectedRoleVal = "";
+  final _emailController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _roleController = TextEditingController();
+
   @override
+  void dispose() {
+    _emailController.dispose();
+    _confirmPasswordController.dispose();
+    _passwordController.dispose();
+    _usernameController.dispose();
+    _phoneNumberController.dispose();
+    _roleController.dispose();
+    super.dispose();
+  }
+
+  //sign user up method
+  void signUserUp() async {
+    //show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Colors.green,
+          ),
+        );
+      },
+    );
+  //
+    //try sign up
+    try {
+      if (_passwordController.text.length <= 5) {
+        Navigator.pop(context);
+        //show error message for password being too short
+        showErrorMessage('Password must be 6 digits and above');
+      }
+      //check if the confirm password and password are the same
+      if (_passwordController.text == _confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          id: _passwordController.text,
+        );
+
+        //add user details
+        addUserDetails(
+          _usernameController.text.trim(),
+          _emailController.text.trim(),
+          _selectedRoleVal!.trim(),
+          int.parse(
+            _passwordController.text.trim(),
+          ),
+        );
+      } else {
+        //pop circular progress
+        Navigator.pop(context);
+        //show error message for passwords that dont match
+        showErrorMessage('Passwords dont match');
+      }
+    } on FirebaseAuthException catch (e) {
+      //pop circular progress
+      Navigator.pop(context);
+      //WRONG EMAIL
+      if (e.code == 'user-not-found') {
+        //show error to user
+        showErrorMessage('Wrong Email');
+      }
+
+      //WRONG PASSWORD
+      else if (e.code == 'wrong-password') {
+        //show error to user
+        showErrorMessage('Wrong Password');
+      }
+    }
+  }
+
+  Future addUserDetails(
+      String username,
+      String email,
+      String role,
+      int id,
+      ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'Username': username,
+      'Email': email,
+      'Role': role,
+      'ID': id,
+    });
+  }
+
+  //error message popup
+  void showErrorMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+      return AlertDialog(
+          contentPadding: const EdgeInsets.all(10.0),
+          shape:
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    backgroundColor: Colors.green,
+    title: Align(
+    alignment: Alignment.center,
+    child: Text(
+    message,
+    style: const TextStyle(
+    color: Colors.white,
+    fontSize: 27.0,
+    fontWeight: FontWeight.w700),
+    ),
+    ),
+      );},);}
+
+
+
+        @override
   Widget build(BuildContext ctxt) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -29,84 +161,108 @@ class _newUserState extends State<newUser> {
             child: Row(
               children: [
                 Container(
-                  width: 270,
+                  width: MediaQuery.of(context).size.width*(20/100),
                   height: double.infinity,
                   padding: EdgeInsets.zero,
                   child: NavigationDrawer(
                     backgroundColor: Color.fromRGBO(99, 161, 112, 1),
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
-                            child: Image(
-                              image: AssetImage("images/arjun.png"),
-                              height: 60,
-                              width: 60,
+                      TextButton(
+                        onPressed: ()=>{
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new login())
+                          )
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
+                              child: Image(
+                                image: AssetImage("images/arjun.png"),
+                                height: MediaQuery.of(context).size.width*(4.39/100),
+                                width: MediaQuery.of(context).size.width*(4.39/100),
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20, top: 27),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Ibrahim Yakubu",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Inter",
-                                  ),
+                            SizedBox(height: MediaQuery.of(context).size.width*(0.73/100)),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width*(13.42/100),
+                              child: Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100), top: MediaQuery.of(context).size.width*(1.98/100)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "Ibrahim Yakubu",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: MediaQuery.of(context).size.width*(1.17/100),
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: "Inter",
+                                            ),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: MediaQuery.of(context).size.width*(0.4/100)),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "Admin",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: MediaQuery.of(context).size.width*(1.02/100),
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: "Inter",
+                                            ),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "Admin",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Inter",
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.width*(1.46/100),
                       ),
                       TextButton(
                         onPressed: (){
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (ctxt) => new clinic1())
+                            context,
+                            new MaterialPageRoute(builder: (ctxt) => new home()),
                           );
                         },
                         child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(99,161,112,1),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
+                          color: Color.fromRGBO(99,161,112,1),
+                          height: MediaQuery.of(context).size.width*(5.12/100),
+                          width: MediaQuery.of(context).size.width*(21.96/100),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Row(
                             children: [
                               Image.asset(
                                 "images/home.png",
-                                width: 35,
-                                height: 35,
+                                width: MediaQuery.of(context).size.width*(2.64/100),
+                                height: MediaQuery.of(context).size.width*(2.64/100),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Home',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
+                              Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(2.27/100)),
+                                child: Text(
+                                  'Home',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                  ),
                                 ),
                               )
                             ],
@@ -117,63 +273,32 @@ class _newUserState extends State<newUser> {
                         onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => new user()),
+                            MaterialPageRoute(builder: (uSer) => new user()),
                           );
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(255, 255, 255, 0.3),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
+                              borderRadius: BorderRadius.circular(5),
+                              color: Color.fromRGBO(255, 255, 255, 0.3)
+                          ),                            height: MediaQuery.of(context).size.width*(5.12/100),
+                          width: MediaQuery.of(context).size.width*(21.96/100),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Row(
                             children: [
                               Image.asset(
                                 "images/user.png",
-                                width: 35,
-                                height: 35,
+                                width: MediaQuery.of(context).size.width*(2.64/100),
+                                height: MediaQuery.of(context).size.width*(2.64/100),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Users',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                        },
-                        child: Container(
-                          color: Color.fromRGBO(99, 161, 112, 1),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/forms.png",
-                                width: 35,
-                                height: 35,
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Forms',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
+                              Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
+                                child: Text(
+                                  'Users',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                  ),
                                 ),
                               ),
                             ],
@@ -184,33 +309,30 @@ class _newUserState extends State<newUser> {
                         onPressed: (){
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => new newteam())
+                              MaterialPageRoute(builder: (context) => new formVandUV())
                           );
                         },
                         child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(99, 161, 112, 1),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
+                          color: Color.fromRGBO(99,161,112,1),
+                          height: MediaQuery.of(context).size.width*(5.12/100),
+                          width: MediaQuery.of(context).size.width*(21.96/100),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Row(
                             children: [
                               Image.asset(
-                                "images/team.png",
-                                width: 35,
-                                height: 35,
+                                "images/forms.png",
+                                width: MediaQuery.of(context).size.width*(2.64/100),
+                                height: MediaQuery.of(context).size.width*(2.64/100),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Teams',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
+                              Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
+                                child: Text(
+                                  'Forms',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                  ),
                                 ),
                               ),
                             ],
@@ -333,7 +455,7 @@ class _newUserState extends State<newUser> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Full Name",
+                                        "Username",
                                         style: TextStyle(
                                           fontFamily: "Inter",
                                           fontSize: 16,
@@ -348,6 +470,7 @@ class _newUserState extends State<newUser> {
                                         child: ListView(
                                           children: [
                                         TextFormField(
+                                            controller: _usernameController,
                                             decoration: InputDecoration(
                                               border: OutlineInputBorder()
                                             ),
@@ -376,6 +499,7 @@ class _newUserState extends State<newUser> {
                                         child: ListView(
                                             children: [
                                               TextFormField(
+                                                controller: _phoneNumberController,
                                                 decoration: InputDecoration(
                                                     border: OutlineInputBorder(),
                                                 ),
@@ -410,6 +534,7 @@ class _newUserState extends State<newUser> {
                                         child: ListView(
                                             children: [
                                               TextFormField(
+                                                controller: _emailController,
                                                 decoration: InputDecoration(
                                                     border: OutlineInputBorder()
                                                 ),
@@ -447,11 +572,11 @@ class _newUserState extends State<newUser> {
                                           color: Color.fromRGBO (250, 251, 252, 1),
                                           border: Border(top: BorderSide.none)
                                         ),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton(
+
+                                          child: DropdownButtonFormField(
                                             padding: EdgeInsets.only(left: 20),
-                                            value: roleStart,
-                                            items: role.map(
+                                            value: _selectedRoleVal,
+                                            items: _roleList.map(
                                                 (val) => DropdownMenuItem(child: Text(
                                                   val,
                                                   style: TextStyle(
@@ -463,11 +588,11 @@ class _newUserState extends State<newUser> {
                                             ).toList(),
                                                 onChanged: (anotherVal){
                                                   setState((){
-                                                    roleStart = anotherVal as String;
+                                                    _selectedRoleVal = anotherVal as String;
                                                   });
                                               }
                                           ),
-                                        ),
+
                                       ),
                                     ],
                                   ),
@@ -481,7 +606,7 @@ class _newUserState extends State<newUser> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Nationality",
+                                        "ID",
                                         style: TextStyle(
                                             fontFamily: "Inter",
                                             fontSize: 16,
@@ -496,6 +621,7 @@ class _newUserState extends State<newUser> {
                                         child: ListView(
                                             children: [
                                               TextFormField(
+                                                controller: _passwordController,
                                                 decoration: InputDecoration(
                                                     border: OutlineInputBorder()
                                                 ),
@@ -509,7 +635,7 @@ class _newUserState extends State<newUser> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "State of Origin",
+                                        "Confirm ID",
                                         style: TextStyle(
                                             fontFamily: "Inter",
                                             fontSize: 16,
@@ -524,6 +650,7 @@ class _newUserState extends State<newUser> {
                                         child: ListView(
                                             children: [
                                               TextFormField(
+                                                controller: _confirmPasswordController,
                                                 decoration: InputDecoration(
                                                   border: OutlineInputBorder(),
                                                 ),
@@ -536,67 +663,6 @@ class _newUserState extends State<newUser> {
                                 ],
                               ),
                               SizedBox(height: 80,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Highest Qualification",
-                                        style: TextStyle(
-                                            fontFamily: "Inter",
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                      ),
-                                      SizedBox(height: 10,),
-                                      Container(
-                                        width: 320,
-                                        height: 53,
-                                        color: Color.fromRGBO (250, 251, 252, 1),
-                                        child: ListView(
-                                            children: [
-                                              TextFormField(
-                                                decoration: InputDecoration(
-                                                    border: OutlineInputBorder()
-                                                ),
-                                              ),
-                                            ]
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Address",
-                                        style: TextStyle(
-                                            fontFamily: "Inter",
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500
-                                        ),
-                                      ),
-                                      SizedBox(height: 10,),
-                                      Container(
-                                        width: 320,
-                                        height: 53,
-                                        color: Color.fromRGBO (250, 251, 252, 1),
-                                        child: ListView(
-                                            children: [
-                                              TextFormField(
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ]
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
                               SizedBox(height: 60,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -609,7 +675,7 @@ class _newUserState extends State<newUser> {
                                       borderRadius: BorderRadius.circular(3),
                                     ),
                                     child: TextButton(
-                                        onPressed: ()=>{
+                                        onPressed: (){signUserUp();
                                         },
                                         child: Text(
                                           "Add New User",

@@ -3,19 +3,17 @@ import 'package:amaeyeclinic/login.dart';
 import 'package:flutter/material.dart';
 import './patientprofile.dart';
 import './formsAtoZ.dart';
-import './user.dart';
-import './home.dart';
 
 void main(){
-  runApp(formsDate());
+  runApp(PformsDate());
 }
 
-class formsDate extends StatefulWidget {
-  const formsDate({super.key});
+class PformsDate extends StatefulWidget {
+  const PformsDate({super.key});
   @override
-  State<formsDate> createState() => _formsDateState();
+  State<PformsDate> createState() => _PformsDateState();
 }
-class _formsDateState extends State<formsDate> {
+class _PformsDateState extends State<PformsDate> {
 
   String formVariant = "Date Created";
   final _formVariation = [
@@ -87,7 +85,7 @@ class _formsDateState extends State<formsDate> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Admin",
+                                            "Pharmacist",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: MediaQuery.of(context).size.width*(1.02/100),
@@ -104,113 +102,6 @@ class _formsDateState extends State<formsDate> {
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width*(1.46/100),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(builder: (ctxt) => new home()),
-                          );
-                        },
-                        child: Container(
-                          color: Color.fromRGBO(99,161,112,1),
-                          height: MediaQuery.of(context).size.width*(5.12/100),
-                          width: MediaQuery.of(context).size.width*(21.96/100),
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/home.png",
-                                width: MediaQuery.of(context).size.width*(2.64/100),
-                                height: MediaQuery.of(context).size.width*(2.64/100),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(2.27/100)),
-                                child: Text(
-                                  'Home',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (uSer) => new user()),
-                          );
-                        },
-                        child: Container(
-                          color: Color.fromRGBO(99, 161, 112, 1),
-                          height: MediaQuery.of(context).size.width*(5.12/100),
-                          width: MediaQuery.of(context).size.width*(21.96/100),
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/user.png",
-                                width: MediaQuery.of(context).size.width*(2.64/100),
-                                height: MediaQuery.of(context).size.width*(2.64/100),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                                child: Text(
-                                  'Users',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => new formVandUV())
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color.fromRGBO(255, 255, 255, 0.3)
-                          ),                          height: MediaQuery.of(context).size.width*(5.12/100),
-                          width: MediaQuery.of(context).size.width*(21.96/100),
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/forms.png",
-                                width: MediaQuery.of(context).size.width*(2.64/100),
-                                height: MediaQuery.of(context).size.width*(2.64/100),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                                child: Text(
-                                  'Forms',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                     ],
@@ -298,7 +189,7 @@ class _formsDateState extends State<formsDate> {
                                       onPressed: (){
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => new formVandUV())
+                                            MaterialPageRoute(builder: (context) => new PformVandUV())
                                         );
                                       },
                                       child: Text(
@@ -315,7 +206,7 @@ class _formsDateState extends State<formsDate> {
                                       onPressed: (){
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => new formsAtoZ())
+                                            MaterialPageRoute(builder: (context) => new PformsAtoZ())
                                         );
                                       },
                                       child: Text(
@@ -332,7 +223,7 @@ class _formsDateState extends State<formsDate> {
                                       onPressed: (){
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => new formsDate())
+                                            MaterialPageRoute(builder: (context) => new PformsDate())
                                         );
                                       },
                                       child: Text(
@@ -631,7 +522,7 @@ class _formsDateState extends State<formsDate> {
                                           onPressed: ()=>{
                                             Navigator.push(
                                               context,
-                                              MaterialPageRoute(builder: (context) => new patient())
+                                              MaterialPageRoute(builder: (context) => new Ppatient())
                                             )
                                           },
                                           child: Text(

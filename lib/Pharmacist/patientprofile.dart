@@ -6,12 +6,12 @@ import './formsvnuv.dart';
 //      clinic2()
 //   );
 // }
-class Hpatient extends StatefulWidget {
-  const Hpatient({super.key});
+class Ppatient extends StatefulWidget {
+  const Ppatient({super.key});
   @override
-  State<Hpatient> createState() => _HpatientState();
+  State<Ppatient> createState() => _PpatientState();
 }
-class _HpatientState extends State<Hpatient> {
+class _PpatientState extends State<Ppatient> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -78,7 +78,7 @@ class _HpatientState extends State<Hpatient> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Common Health Worker",
+                                            "Pharmacist",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: MediaQuery.of(context).size.width*(1.02/100),
@@ -116,7 +116,7 @@ class _HpatientState extends State<Hpatient> {
                                 onPressed: (){
                                   Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => new HformVandUV())
+                                      MaterialPageRoute(builder: (context) => new PformVandUV())
                                   );
                                 },
                                 child: Container(
@@ -226,33 +226,19 @@ class _HpatientState extends State<Hpatient> {
                                         Text(
                                           "Visual Acuity",
                                           style: TextStyle(
-                                              fontSize: MediaQuery.of(context).size.width*(1.54/100),
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                          ),
+                                            fontSize: MediaQuery.of(context).size.width*(1.54/100),
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w600,
+                                            color: Color.fromRGBO(132,132,130,1),                                        ),
                                         ),
-                                        Container(
-                                            width: MediaQuery.of(context).size.width*(19.77/100),
-                                            height: MediaQuery.of(context).size.width*(3.88/100),
-                                            color: Colors.white,
-                                            child: ListView(
-                                              children: [
-                                                TextFormField(
-                                                  decoration: InputDecoration(
-                                                    hintText: "Edit",
-                                                    border: InputBorder.none,
-                                                  ),
-                                                  style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.width*(1.10/100),
-                                                    fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )
-                                              ],
-                                            )
+                                        SizedBox(height:MediaQuery.of(context).size.width*(0.73/100)),
+                                        Text(
+                                          "Both Eyes",
+                                          style: TextStyle(
+                                            fontSize: MediaQuery.of(context).size.width*(1.10/100),
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromRGBO(132,132,130,1),                                        ),
                                         ),
                                         SizedBox(height: MediaQuery.of(context).size.width*(3.66/100),),
                                         Text(
@@ -265,7 +251,7 @@ class _HpatientState extends State<Hpatient> {
                                           ),
                                         SizedBox(height:MediaQuery.of(context).size.width*(0.73/100)),
                                         Text(
-                                          "-",
+                                          "Sharp pain when eye is moved rapidly",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context).size.width*(1.10/100),
                                             fontFamily: "Inter",
@@ -284,7 +270,7 @@ class _HpatientState extends State<Hpatient> {
                                         ),
                                         SizedBox(height:MediaQuery.of(context).size.width*(0.73/100)),
                                         Text(
-                                          "-",
+                                          "Eyes are red as a result of multiple exposed arteries",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context).size.width*(1.10/100),
                                             fontFamily: "Inter",
@@ -303,7 +289,7 @@ class _HpatientState extends State<Hpatient> {
                                         ),
                                         SizedBox(height:MediaQuery.of(context).size.width*(0.73/100)),
                                         Text(
-                                          "-",
+                                        "Over exposure to blue light from electronics and opening of eyes when swimming",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context).size.width*(1.10/100),
                                             fontFamily: "Inter",
@@ -322,7 +308,7 @@ class _HpatientState extends State<Hpatient> {
                                         ),
                                         SizedBox(height:MediaQuery.of(context).size.width*(0.73/100)),
                                         Text(
-                                          "-",
+                                          "Reduce screen time and use goggles when swimming",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context).size.width*(1.10/100),
                                             fontFamily: "Inter",
@@ -351,7 +337,7 @@ class _HpatientState extends State<Hpatient> {
                                             ),
                                             SizedBox(width: MediaQuery.of(context).size.width*(0.73/100)),
                                             Text(
-                                              "-",
+                                              "Eye drop",
                                               style: TextStyle(
                                                 fontSize: MediaQuery.of(context).size.width*(1.10/100),
                                                 fontFamily: "Inter",
@@ -373,7 +359,7 @@ class _HpatientState extends State<Hpatient> {
                                         ),
                                         SizedBox(height: MediaQuery.of(context).size.width*(0.73/100),),
                                         Text(
-                                          "-",
+                                          "+1.2",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context).size.width*(1.10/100),
                                             fontFamily: "Inter",

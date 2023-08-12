@@ -1,35 +1,34 @@
-import './formsvnuv.dart';
+import './formsDate.dart';
 import 'package:amaeyeclinic/login.dart';
 import 'package:flutter/material.dart';
 import './patientprofile.dart';
 import './formsAtoZ.dart';
-import './user.dart';
-import './home.dart';
-
-void main(){
-  runApp(formsDate());
-}
-
-class formsDate extends StatefulWidget {
-  const formsDate({super.key});
-  @override
-  State<formsDate> createState() => _formsDateState();
-}
-class _formsDateState extends State<formsDate> {
-
-  String formVariant = "Date Created";
-  final _formVariation = [
-    "Viewed and Unviewed","AtoZ", "Date Created"
-  ];
-
-  Widget build(BuildContext ctxt) {
-    return MaterialApp(
+void main() {
+  runApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+        home: PformVandUV(),
+    )
+  );
+}
+class PformVandUV extends StatefulWidget {
+  const PformVandUV({super.key});
+  @override
+  State<PformVandUV> createState() => _PformVandUVState();
+}
+class _PformVandUVState extends State<PformVandUV> {
+
+  Widget build(BuildContext context) {
+    return Scaffold(
         backgroundColor: Color.fromRGBO(238, 255, 241, 1),
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text("AMA Foundation",style: TextStyle(color: Colors.black),),
+          title: Text(
+            "AMA Foundation",
+            style: TextStyle(
+                color: Colors.black
+            ),
+          ),
         ),
         body: SafeArea(
             child: Row(
@@ -87,7 +86,7 @@ class _formsDateState extends State<formsDate> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Admin",
+                                            "Pharmacist",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: MediaQuery.of(context).size.width*(1.02/100),
@@ -104,113 +103,6 @@ class _formsDateState extends State<formsDate> {
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width*(1.46/100),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(builder: (ctxt) => new home()),
-                          );
-                        },
-                        child: Container(
-                          color: Color.fromRGBO(99,161,112,1),
-                          height: MediaQuery.of(context).size.width*(5.12/100),
-                          width: MediaQuery.of(context).size.width*(21.96/100),
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/home.png",
-                                width: MediaQuery.of(context).size.width*(2.64/100),
-                                height: MediaQuery.of(context).size.width*(2.64/100),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(2.27/100)),
-                                child: Text(
-                                  'Home',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (uSer) => new user()),
-                          );
-                        },
-                        child: Container(
-                          color: Color.fromRGBO(99, 161, 112, 1),
-                          height: MediaQuery.of(context).size.width*(5.12/100),
-                          width: MediaQuery.of(context).size.width*(21.96/100),
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/user.png",
-                                width: MediaQuery.of(context).size.width*(2.64/100),
-                                height: MediaQuery.of(context).size.width*(2.64/100),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                                child: Text(
-                                  'Users',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => new formVandUV())
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color.fromRGBO(255, 255, 255, 0.3)
-                          ),                          height: MediaQuery.of(context).size.width*(5.12/100),
-                          width: MediaQuery.of(context).size.width*(21.96/100),
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/forms.png",
-                                width: MediaQuery.of(context).size.width*(2.64/100),
-                                height: MediaQuery.of(context).size.width*(2.64/100),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
-                                child: Text(
-                                  'Forms',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                     ],
@@ -298,16 +190,17 @@ class _formsDateState extends State<formsDate> {
                                       onPressed: (){
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => new formVandUV())
+                                            MaterialPageRoute(builder: (context) => new PformVandUV())
                                         );
                                       },
                                       child: Text(
                                         "Unviewed and Viewed",
                                         style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                          fontWeight: FontWeight.w600,
-                                          color: Color.fromRGBO(86, 109, 136, 1)
+                                            fontFamily: "Inter",
+                                            fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                            fontWeight: FontWeight.w600,
+                                            color: Color.fromRGBO(86, 109, 136, 1),
+                                          decoration: TextDecoration.underline
                                         ),
                                       ),
                                     ),
@@ -315,16 +208,16 @@ class _formsDateState extends State<formsDate> {
                                       onPressed: (){
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => new formsAtoZ())
+                                            MaterialPageRoute(builder: (context) => new PformsAtoZ())
                                         );
                                       },
                                       child: Text(
                                         "A - Z",
                                         style: TextStyle(
-                                            fontFamily: "Inter",
-                                            fontSize: MediaQuery.of(context).size.width*(1.32/100),
-                                            fontWeight: FontWeight.w600,
-                                            color: Color.fromRGBO(86, 109, 136, 1),
+                                          fontFamily: "Inter",
+                                          fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromRGBO(86, 109, 136, 1),
                                         ),
                                       ),
                                     ),
@@ -332,7 +225,7 @@ class _formsDateState extends State<formsDate> {
                                       onPressed: (){
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => new formsDate())
+                                            MaterialPageRoute(builder: (context) => new PformsDate())
                                         );
                                       },
                                       child: Text(
@@ -342,7 +235,6 @@ class _formsDateState extends State<formsDate> {
                                             fontSize: MediaQuery.of(context).size.width*(1.32/100),
                                             fontWeight: FontWeight.w600,
                                             color: Color.fromRGBO(86, 109, 136, 1),
-                                          decoration: TextDecoration.underline
                                         ),
                                       ),
                                     ),
@@ -366,29 +258,25 @@ class _formsDateState extends State<formsDate> {
                                 ),
                               ]
                           ),
-                          SizedBox(height: 1.10),
-                          Container(
-                            width: MediaQuery.of(context).size.width*(70/100),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(height: MediaQuery.of(context).size.width*(1.46/100)),
-                                Text(
-                                  "Today",
-                                  style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.39/100),
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black,
-                                  ),
+                          SizedBox(height: MediaQuery.of(context).size.width*(1.10/100)),
+                          Row(
+                            children: [
+                              SizedBox(height: MediaQuery.of(context).size.width*(1.46/100)),
+                              Text(
+                                "Unviewed",
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: MediaQuery.of(context).size.width*(1.39/100),
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
                           Container(
                             width: MediaQuery.of(context).size.width*(70/100),
-                            height: MediaQuery.of(context).size.width*(0.07/100),
+                            height: 1,
                             color: Colors.black,
                           ),
                           SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
@@ -396,6 +284,104 @@ class _formsDateState extends State<formsDate> {
                             padding: EdgeInsets.all(30),
                             width: MediaQuery.of(context).size.width*(70/100),
                             color: Color.fromRGBO(255, 255, 255, 1),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Dalton Devito",
+                                  style: TextStyle(
+                                    fontFamily: "Roboto",
+                                    fontSize: MediaQuery.of(context).size.width*(1.76/100),
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromRGBO(86, 109, 136, 1),
+                                  ),
+                                ),
+                                SizedBox(height:MediaQuery.of(context).size.width*(1.83/100)),
+                                Text(
+                                  "Age: 21",
+                                  style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.17/100),
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(86, 109, 136, 1),
+                                  ),
+                                ),
+                                SizedBox(height: MediaQuery.of(context).size.width*(1.24/100)),
+                                Text(
+                                  "Sex: Male",
+                                  style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontSize: MediaQuery.of(context).size.width*(1.17/100),
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromRGBO(86, 109, 136, 1)
+                                  ),
+                                ),
+                                SizedBox(height:5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Submitted On: 14/12/22",
+                                      style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontSize: MediaQuery.of(context).size.width*(1.17/100),
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromRGBO(86, 109, 136, 1)
+                                      ),
+                                    ),
+                                    SizedBox(width: MediaQuery.of(context).size.width*(30/100),),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width*(6.95/100),
+                                      height: MediaQuery.of(context).size.width*(2.93/100),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(99, 161, 112, 1),
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                      child: TextButton(
+                                          onPressed: ()=>{
+                                          },
+                                          child: Text(
+                                            "View",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: MediaQuery.of(context).size.width*(1.10/100),
+                                            ),
+                                          )
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
+                          Row(
+                            children: [
+                              SizedBox(height: MediaQuery.of(context).size.width*(1.46/100),),
+                              Text(
+                                "Viewed",
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: MediaQuery.of(context).size.width*(1.39/100),
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
+                          Container(
+                            width: MediaQuery.of(context).size.width*(70/100),
+                            height: MediaQuery.of(context).size.width*(0.07/100),
+                            color: Colors.black,
+                          ),
+                          SizedBox(height:MediaQuery.of(context).size.width*(2.64/100),),
+                          Container(
+                            padding: EdgeInsets.all(30),
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                            width: MediaQuery.of(context).size.width*(70/100),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -428,7 +414,7 @@ class _formsDateState extends State<formsDate> {
                                       color: Color.fromRGBO(86, 109, 136, 1)
                                   ),
                                 ),
-                                SizedBox(height:MediaQuery.of(context).size.width*(0.37/100)),
+                                SizedBox(height:5),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -443,108 +429,10 @@ class _formsDateState extends State<formsDate> {
                                     ),
                                     SizedBox(width: MediaQuery.of(context).size.width*(30/100),
                                     ),
+
                                     Container(
                                       width: MediaQuery.of(context).size.width*(6.95/100),
                                       height: MediaQuery.of(context).size.width*(2.93/100),
-                                      decoration: BoxDecoration(
-                                        color: Color.fromRGBO(99, 161, 112, 1),
-                                        borderRadius: BorderRadius.circular(3),
-                                      ),
-                                      child: TextButton(
-                                          onPressed: ()=>{
-                                          },
-                                          child: Text(
-                                            "View",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: MediaQuery.of(context).size.width*(1.10/100),
-                                            ),
-                                          )
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
-                          Row(
-                            children: [
-                              SizedBox(height: MediaQuery.of(context).size.width*(1.46/100),),
-                              Text(
-                                "Yesterday",
-                                style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontSize: MediaQuery.of(context).size.width*(1.39/100),
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
-                          Container(
-                            width: MediaQuery.of(context).size.width*(70/100),
-                            height: MediaQuery.of(context).size.width*(((1/1366)*100)/100),
-                            color: Colors.black,
-                          ),
-                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
-                          Container(
-                            padding: EdgeInsets.all(30),
-                            width: MediaQuery.of(context).size.width*(70/100),
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Sam Peters",
-                                  style: TextStyle(
-                                    fontFamily: "Roboto",
-                                    fontSize: MediaQuery.of(context).size.width*(1.76/100),
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromRGBO(86, 109, 136, 1),
-                                  ),
-                                ),
-                                SizedBox(height:25),
-                                Text(
-                                  "Age: 31",
-                                  style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontSize: MediaQuery.of(context).size.width*(1.17/100),
-                                    fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(86, 109, 136, 1),
-                                  ),
-                                ),
-                                SizedBox(height:17),
-                                Text(
-                                  "Sex: Male",
-                                  style: TextStyle(
-                                      fontFamily: "Inter",
-                                      fontSize: MediaQuery.of(context).size.width*(1.17/100),
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(86, 109, 136, 1)
-                                  ),
-                                ),
-                                SizedBox(height: MediaQuery.of(context).size.width*(((5/1366)*100)/100)),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Submitted On: 01/03/23",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontSize: MediaQuery.of(context).size.width*(1.17/100),
-                                          fontWeight: FontWeight.w400,
-                                          color: Color.fromRGBO(86, 109, 136, 1)
-                                      ),
-                                    ),
-                                    SizedBox(width: MediaQuery.of(context).size.width*(30/100),
-                                    ),
-                                    Container(
-                                      width: 95,
-                                      height: 40,
                                       decoration: BoxDecoration(
                                         color: Color.fromRGBO(99, 161, 112, 1),
                                         borderRadius: BorderRadius.circular(3),
@@ -630,8 +518,8 @@ class _formsDateState extends State<formsDate> {
                                       child: TextButton(
                                           onPressed: ()=>{
                                             Navigator.push(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => new patient())
+                                                context,
+                                                MaterialPageRoute(builder: (context) => new Ppatient())
                                             )
                                           },
                                           child: Text(
@@ -651,36 +539,15 @@ class _formsDateState extends State<formsDate> {
                             ),
                           ),
                           SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
-                          Row(
-                            children: [
-                              SizedBox(height: MediaQuery.of(context).size.width*(1.46/100),),
-                              Text(
-                                "14th December, 2022",
-                                style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontSize: MediaQuery.of(context).size.width*(1.39/100),
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
-                          Container(
-                            width: MediaQuery.of(context).size.width*(70/100),
-                            height: MediaQuery.of(context).size.width*(0.07/100),
-                            color: Colors.black,
-                          ),
-                          SizedBox(height: MediaQuery.of(context).size.width*(2.64/100),),
                           Container(
                             padding: EdgeInsets.all(30),
-                            width: MediaQuery.of(context).size.width*(70/100),
                             color: Color.fromRGBO(255, 255, 255, 1),
+                            width: MediaQuery.of(context).size.width*(70/100),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Dalton Devito",
+                                  "Sam Peters",
                                   style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: MediaQuery.of(context).size.width*(1.76/100),
@@ -690,7 +557,7 @@ class _formsDateState extends State<formsDate> {
                                 ),
                                 SizedBox(height:MediaQuery.of(context).size.width*(1.83/100)),
                                 Text(
-                                  "Age: 21",
+                                  "Age: 31",
                                   style: TextStyle(
                                     fontFamily: "Inter",
                                     fontSize: MediaQuery.of(context).size.width*(1.17/100),
@@ -708,12 +575,12 @@ class _formsDateState extends State<formsDate> {
                                       color: Color.fromRGBO(86, 109, 136, 1)
                                   ),
                                 ),
-                                SizedBox(height: MediaQuery.of(context).size.width*(0.37/100)),
+                                SizedBox(height:5),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Submitted On: 01/03/23",
+                                      "Submitted On: 28/04/23",
                                       style: TextStyle(
                                           fontFamily: "Inter",
                                           fontSize: MediaQuery.of(context).size.width*(1.17/100),
@@ -744,19 +611,18 @@ class _formsDateState extends State<formsDate> {
                                           )
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
+    ],
                     ),
-                  ),
                 ),
-              ],
-            )
+    ],
+      ),
         ),
+                  ),
+        ),
+        ],
+    ),
       ),
     );
   }

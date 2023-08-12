@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'formsvnuv.dart';
-import 'user.dart';
-import 'newuser.dart';
-import 'team.dart';
-import 'login.dart';
-import 'home.dart';
-void main() {
+import '../firebase_options.dart';
+import './formsvnuv.dart';
+import './user.dart';
+import 'package:amaeyeclinic/login.dart';
+import './home.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
      MaterialApp(
        debugShowCheckedModeBanner: false,
@@ -40,90 +46,109 @@ class _clinic1State extends State<clinic1> {
       child: Row(
         children: [
           Container(
-            width: 270,
+            width: MediaQuery.of(context).size.width*(20/100),
             height: double.infinity,
             padding: EdgeInsets.zero,
             child: NavigationDrawer(
               backgroundColor: Color.fromRGBO(99, 161, 112, 1),
               children: [
-                TextButton(onPressed: ()=>{
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => new login())
-                  )
-                },
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
-                          child: Image(
-                            image: AssetImage("images/arjun.png"),
-                            height: 60,
-                            width: 60,
-                          ),
+                TextButton(
+                  onPressed: ()=>{
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => new login())
+                    )
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
+                        child: Image(
+                          image: AssetImage("images/arjun.png"),
+                          height: MediaQuery.of(context).size.width*(4.39/100),
+                          width: MediaQuery.of(context).size.width*(4.39/100),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 20, top: 27),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.width*(0.73/100)),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*(13.42/100),
+                        child: Container(
+                          margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100), top: MediaQuery.of(context).size.width*(1.98/100)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Ibrahim Yakubu",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "Inter",
-                                ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Ibrahim Yakubu",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: MediaQuery.of(context).size.width*(1.17/100),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter",
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Admin",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "Inter",
-                                ),
+                              SizedBox(height: MediaQuery.of(context).size.width*(0.4/100)),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Admin",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: MediaQuery.of(context).size.width*(1.02/100),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter",
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: MediaQuery.of(context).size.width*(1.46/100),
                 ),
                 TextButton(
                   onPressed: (){
                     Navigator.push(
-                        context,
-                        new MaterialPageRoute(builder: (ctxt) => new home()),
-                        );
+                      context,
+                      new MaterialPageRoute(builder: (ctxt) => new home()),
+                    );
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Color.fromRGBO(255, 255, 255, 0.3),
-                    ),
-                    height: 70,
-                    width: 300,
-                    padding: EdgeInsets.only(left: 20),
+                        borderRadius: BorderRadius.circular(5),
+                        color: Color.fromRGBO(255, 255, 255, 0.3)
+                    ),                                              height: MediaQuery.of(context).size.width*(5.12/100),
+                    width: MediaQuery.of(context).size.width*(21.96/100),
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                     child: Row(
                       children: [
                         Image.asset(
-                            "images/home.png",
-                          width: 35,
-                          height: 35,
+                          "images/home.png",
+                          width: MediaQuery.of(context).size.width*(2.64/100),
+                          height: MediaQuery.of(context).size.width*(2.64/100),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 30),
+                          margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(2.27/100)),
                           child: Text(
                             'Home',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Inter",
-                              fontSize: 18,
+                              fontSize: MediaQuery.of(context).size.width*(1.32/100),
                             ),
                           ),
                         )
@@ -134,30 +159,30 @@ class _clinic1State extends State<clinic1> {
                 TextButton(
                   onPressed: (){
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (uSer) => new user()),
+                      context,
+                      MaterialPageRoute(builder: (uSer) => new user()),
                     );
                   },
                   child: Container(
                     color: Color.fromRGBO(99, 161, 112, 1),
-                    height: 70,
-                    width: 300,
-                    padding: EdgeInsets.only(left: 20),
+                    height: MediaQuery.of(context).size.width*(5.12/100),
+                    width: MediaQuery.of(context).size.width*(21.96/100),
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                     child: Row(
                       children: [
                         Image.asset(
                           "images/user.png",
-                          width: 35,
-                          height: 35,
+                          width: MediaQuery.of(context).size.width*(2.64/100),
+                          height: MediaQuery.of(context).size.width*(2.64/100),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Text(
                             'Users',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Inter",
-                              fontSize: 18,
+                              fontSize: MediaQuery.of(context).size.width*(1.32/100),
                             ),
                           ),
                         ),
@@ -169,67 +194,30 @@ class _clinic1State extends State<clinic1> {
                   onPressed: (){
                     Navigator.push(
                         context,
-                      MaterialPageRoute(builder: (context) => new formVandUV())
+                        MaterialPageRoute(builder: (context) => new formVandUV())
                     );
                   },
                   child: Container(
-                    color: Color.fromRGBO(99, 161, 112, 1),
-                    height: 70,
-                    width: 300,
-                    padding: EdgeInsets.only(left: 20),
+                    color: Color.fromRGBO(99,161,112,1),
+                    height: MediaQuery.of(context).size.width*(5.12/100),
+                    width: MediaQuery.of(context).size.width*(21.96/100),
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                     child: Row(
                       children: [
                         Image.asset(
                           "images/forms.png",
-                          width: 35,
-                          height: 35,
+                          width: MediaQuery.of(context).size.width*(2.64/100),
+                          height: MediaQuery.of(context).size.width*(2.64/100),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Text(
                             'Forms',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Inter",
-                              fontSize: 18,
+                              fontSize: MediaQuery.of(context).size.width*(1.32/100),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => new newteam())
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Color.fromRGBO(99, 161, 112, 1),
-                    ),
-                    height: 70,
-                    width: 300,
-                    padding: EdgeInsets.only(left: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "images/team.png",
-                          width: 35,
-                          height: 35,
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          'Teams',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "Inter",
-                            fontSize: 18,
                           ),
                         ),
                       ],
@@ -270,10 +258,7 @@ class _clinic1State extends State<clinic1> {
                     ),
                     TextButton(
                       onPressed: () => {
-                      Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => new newUser()),
-                      ),
+
                       },
                       child: Text(
                         "Create User",

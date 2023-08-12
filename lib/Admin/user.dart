@@ -1,11 +1,11 @@
-import 'package:amaeyeclinic/Admin/formsAtoZ.dart';
+import './home.dart';
+import 'package:amaeyeclinic/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'newuser.dart';
 import 'main.dart';
-import 'view.dart';
-import 'formsvnuv.dart';
-import 'team.dart';
+import './view.dart';
+import './formsvnuv.dart';
+import "./newuser.dart";
 // void main() {
 //   runApp(
 //      clinic2()
@@ -34,84 +34,108 @@ class _userState extends State<user> {
             child: Row(
               children: [
                 Container(
-                  width: 270,
+                  width: MediaQuery.of(context).size.width*(20/100),
                   height: double.infinity,
                   padding: EdgeInsets.zero,
                   child: NavigationDrawer(
                     backgroundColor: Color.fromRGBO(99, 161, 112, 1),
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
-                            child: Image(
-                              image: AssetImage("images/arjun.png"),
-                              height: 60,
-                              width: 60,
+                      TextButton(
+                        onPressed: ()=>{
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new login())
+                          )
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(10, 30, 0, 0),
+                              child: Image(
+                                image: AssetImage("images/arjun.png"),
+                                height: MediaQuery.of(context).size.width*(4.39/100),
+                                width: MediaQuery.of(context).size.width*(4.39/100),
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20, top: 27),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Ibrahim Yakubu",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Inter",
-                                  ),
+                            SizedBox(height: MediaQuery.of(context).size.width*(0.73/100)),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width*(13.42/100),
+                              child: Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100), top: MediaQuery.of(context).size.width*(1.98/100)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "Ibrahim Yakubu",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: MediaQuery.of(context).size.width*(1.17/100),
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: "Inter",
+                                            ),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: MediaQuery.of(context).size.width*(0.4/100)),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "Admin",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: MediaQuery.of(context).size.width*(1.02/100),
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: "Inter",
+                                            ),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "Admin",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "Inter",
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.width*(1.46/100),
                       ),
                       TextButton(
                         onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => new clinic1()),
+                            new MaterialPageRoute(builder: (ctxt) => new home()),
                           );
                         },
                         child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(99, 161, 112, 1),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
+                          color: Color.fromRGBO(99,161,112,1),
+                          height: MediaQuery.of(context).size.width*(5.12/100),
+                          width: MediaQuery.of(context).size.width*(21.96/100),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Row(
                             children: [
                               Image.asset(
                                 "images/home.png",
-                                width: 35,
-                                height: 35,
+                                width: MediaQuery.of(context).size.width*(2.64/100),
+                                height: MediaQuery.of(context).size.width*(2.64/100),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Home',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
+                              Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(2.27/100)),
+                                child: Text(
+                                  'Home',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                  ),
                                 ),
                               )
                             ],
@@ -120,32 +144,34 @@ class _userState extends State<user> {
                       ),
                       TextButton(
                         onPressed: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (uSer) => new user()),
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(255, 255, 255, 0.3),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
+                              color: Color.fromRGBO(255, 255, 255, 0.3)
+                          ),                            height: MediaQuery.of(context).size.width*(5.12/100),
+                          width: MediaQuery.of(context).size.width*(21.96/100),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Row(
                             children: [
                               Image.asset(
                                 "images/user.png",
-                                width: 35,
-                                height: 35,
+                                width: MediaQuery.of(context).size.width*(2.64/100),
+                                height: MediaQuery.of(context).size.width*(2.64/100),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Users',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
+                              Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
+                                child: Text(
+                                  'Users',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                  ),
                                 ),
                               ),
                             ],
@@ -156,70 +182,30 @@ class _userState extends State<user> {
                         onPressed: (){
                           Navigator.push(
                               context,
-                            MaterialPageRoute(builder: (context) => new formVandUV())
+                              MaterialPageRoute(builder: (context) => new formVandUV())
                           );
                         },
                         child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(99, 161, 112, 1),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
+                          color: Color.fromRGBO(99,161,112,1),
+                          height: MediaQuery.of(context).size.width*(5.12/100),
+                          width: MediaQuery.of(context).size.width*(21.96/100),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
                           child: Row(
                             children: [
                               Image.asset(
                                 "images/forms.png",
-                                width: 35,
-                                height: 35,
+                                width: MediaQuery.of(context).size.width*(2.64/100),
+                                height: MediaQuery.of(context).size.width*(2.64/100),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Forms',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => new newteam())
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromRGBO(99, 161, 112, 1),
-                          ),
-                          height: 70,
-                          width: 300,
-                          padding: EdgeInsets.only(left: 20),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "images/team.png",
-                                width: 35,
-                                height: 35,
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Teams',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Inter",
-                                  fontSize: 18,
+                              Container(
+                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*(1.46/100)),
+                                child: Text(
+                                  'Forms',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                    fontSize: MediaQuery.of(context).size.width*(1.32/100),
+                                  ),
                                 ),
                               ),
                             ],
@@ -227,8 +213,8 @@ class _userState extends State<user> {
                         ),
                       ),
                     ],
-            )
-        ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(50,0,40,0),
                   child: SingleChildScrollView(
@@ -274,49 +260,51 @@ class _userState extends State<user> {
                                           ),
                                     SizedBox(width: 20,),
                                     Container(
-                                            width: 110,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              color: Color.fromRGBO(99, 161, 112, 1),
-                                              borderRadius: BorderRadius.circular(3),
-                                            ),
-                                            child: TextButton(
-                                                onPressed: ()=>{
+                                      width: 110,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(99, 161, 112, 1),
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                      child: TextButton(
+                                          onPressed: ()=>{
 
-                                                },
-                                                child: Text(
-                                                  "Search",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 15,
-                                                  ),
-                                                )
+                                          },
+                                          child: Text(
+                                            "Search",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 15,
                                             ),
-                                          ),
+                                          )
+                                      ),
+                                    ),
                                     SizedBox(width: 20,),
                                     Container(
-                                      color: Color.fromRGBO(201, 255, 212, 1),
+                                      width: 140,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(99, 161, 112, 1),
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
                                       child: TextButton(
-                                        onPressed: ()=>{
-                                          Navigator.push(
+                                          onPressed: ()=>{
+                                            Navigator.push(
                                               context,
-                                              MaterialPageRoute(builder: (context) => new newUser())
-                                          )
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.all(17),
+                                              MaterialPageRoute(builder: (context) =>  new newUser())
+                                            )
+                                          },
                                           child: Text(
                                             "Create New User",
                                             style: TextStyle(
-                                              color: Color.fromRGBO(99, 161, 112, 1),
-                                              fontSize: 14,
+                                              color: Colors.white,
                                               fontFamily: "Inter",
-                                              fontWeight: FontWeight.w400,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 15,
                                             ),
-                                          ),
-                                        ),
+                                          )
                                       ),
                                     ),
                                         ],

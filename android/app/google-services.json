@@ -1,34 +1,85 @@
 {
   "project_info": {
-    "project_number": "552893853520",
-    "project_id": "ama-foundation-9c810",
-    "storage_bucket": "ama-foundation-9c810.appspot.com"
+    "project_number": "206072794651",
+    "project_id": "amafoundation-6f2f1",
+    "storage_bucket": "amafoundation-6f2f1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:552893853520:android:9d9defb4de39e1b9e10655",
+        "mobilesdk_app_id": "1:206072794651:android:4cebf972353e25c2fa32be",
         "android_client_info": {
-          "package_name": "com.skafold.amaeyeclinic"
+          "package_name": "com.amafoundation.amafoundation"
         }
       },
       "oauth_client": [
         {
-          "client_id": "552893853520-scvfv812uqqbs26dp6sbgin2u9dhnehc.apps.googleusercontent.com",
+          "client_id": "206072794651-nbaa2kova2aqdfmkmd0qta78opulka92.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amafoundation.amafoundation",
+            "certificate_hash": "d6c9546a9338a45d8b18e0a49464d5aa135baf78"
+          }
+        },
+        {
+          "client_id": "206072794651-r4lrk1nnudqdg5qmfepp3t50qqod6iv3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD_0c7rd3k9B6kcWWbDFpXazLQAKWHFB3Q"
+          "current_key": "AIzaSyCmZAmA4Lpc5EkiEK1khELIk5Xw3ScKRd8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "552893853520-scvfv812uqqbs26dp6sbgin2u9dhnehc.apps.googleusercontent.com",
+              "client_id": "206072794651-71ee8gsigesqm9b4vlhlg4vep0aamq4g.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "206072794651-9h8pj6t5f71fa72nhgas549k635ohuca.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.amafoundation.amafoundation"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206072794651:android:7dfc156470fe63e8fa32be",
+        "android_client_info": {
+          "package_name": "com.skafold.amaeyeclinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206072794651-r4lrk1nnudqdg5qmfepp3t50qqod6iv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmZAmA4Lpc5EkiEK1khELIk5Xw3ScKRd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206072794651-71ee8gsigesqm9b4vlhlg4vep0aamq4g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "206072794651-9h8pj6t5f71fa72nhgas549k635ohuca.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.amafoundation.amafoundation"
+              }
             }
           ]
         }
